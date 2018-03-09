@@ -209,7 +209,7 @@ func (c *Cache) Load (r io.Reader) error {  //从io.reader 中读取数据项
 		defer c.mu.Unlock()
 		for k,v := range items{
 			ov,found := c.items[k]
-			if !found || ov.Expired(){
+			if !found || !ov.Expired(){
 				c.items[k] = v
 			}
 		}
